@@ -1,14 +1,19 @@
 from sqlalchemy import create_engine
+from dotenv import load_dotenv
 import pandas as pd
 import numpy as np
-
+import os # Necessário para uso com o dotenv
 
 # Variáveis de conexão para o BD
 
-host = 'localhost'
-user = 'root'
-password = ''
-database = 'bd_loja'
+# pip install python-dotenv   --  para utilizar o arquivo .env com as credenciais do BD
+
+load_dotenv()
+
+host = os.getenv('DB_HOST')
+user = os.getenv('DB_USER')
+password = os.getenv('DB_PASSWORD')
+database = os.getenv('DB_DATABASE')
 
 engine = create_engine(f'mysql+pymysql://{user}:{password}@{host}/{database}')
 
